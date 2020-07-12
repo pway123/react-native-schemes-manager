@@ -44,8 +44,11 @@ function updateProject (project) {
 					const sourceConfig = sourceConfigs[key];
 					const configList = configListForConfig(configLists, key);
 
-					if (!configList) throw new Error(`Unable to find config list for build configuration: ${sourceConfig.name}`);
-
+					//if (!configList) throw new Error(`Unable to find config list for build configuration: ${sourceConfig.name}`);
+					if (!configList) {
+						console.log(`Unable to find config list for build configuration: ${sourceConfig.name}`);
+						continue;
+					}
 					// Copy that bad boy.
 					const clone = JSON.parse(JSON.stringify(sourceConfig));
 					clone.name = `"${destinationBuildConfig}"`;
